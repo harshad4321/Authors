@@ -16,7 +16,10 @@ router.get('/new', (req, res) => {
 
 // Create Auth Routh
 router.post('/', (req, res) => {
-    res.send('create')
+    const author = new Author({
+        name: req.body.name
+    })
+    res.send(req.body.name)
 })
 
 module.exports = router;

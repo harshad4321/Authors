@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 // middlewares
 
 app.use(cors()) // to access data from another server
-app.use(bodyParser.urlencoded({ limit: '10mb' }))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 app.use(express.json()) // convert data into json format
 // app.use(expresLayout)
 var hbs = require('express-handlebars')
