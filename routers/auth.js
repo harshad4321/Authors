@@ -15,11 +15,24 @@ router.get('/new', (req, res) => {
 
 
 // Create Auth Routh
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const author = new Author({
         name: req.body.name
     })
-    res.send(req.body.name)
+    try {
+        const newAuthor = await author.save()
+
+        // res.redirect(`author/${newAuthor.id}`)
+        res.redirect(`authors`)
+
+    } catch {
+        res.render('authors/new', {
+            author: author,
+            errorMessage: 'error creathing on author'
+
+        })
+    }
 })
+
 
 module.exports = router;

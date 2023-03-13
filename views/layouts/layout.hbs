@@ -13,6 +13,9 @@
 
 
     {{>header}}
+    {{#if errorMessage}}
+    {{>errorMessage}}
+    {{/if}}
     {{{body}}}
 
 </body>
