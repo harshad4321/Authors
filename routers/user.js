@@ -1,15 +1,16 @@
 const express = require('express')
-
 const router = express.Router()
+
+const Author = require('../models/auth')
 
 router.get('/', (req, res) => {
     res.render('authors/index')
 
 })
 
-// New Router for auth
+// New Author Route
 router.get('/new', (req, res) => {
-    res.render('auth/new')
+    res.render('auth/new', { author: new Author() })
 })
 
 
