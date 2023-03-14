@@ -7,8 +7,8 @@ const path = require('path');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const colors = require('colors');
-const userRouter = require('./routers/user');
-const autherRouter = require('./routers/auth');
+const userRouter = require('./routers');
+const autherRouter = require('./routers/authors');
 
 const conn = require('./config/db');
 const app = express()
@@ -46,7 +46,7 @@ conn.connection.on('connected', (err) => {
 // express.Router
 
 app.use('/', userRouter);
-app.use('/authers', autherRouter);
+app.use('/authors', autherRouter);
 
 app.get('*', (req, res) => {
     res.send('<h1>SOMETHING WENT WRONG CHECK THE ROUTES (404)</h1>');

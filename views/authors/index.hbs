@@ -1,1 +1,12 @@
-<!-- All Authers -->
+<h2>Search Authors</h2>
+<form action="/authors" method="GET">
+    <label for="">Name </label>
+    <input type="text" name="name" value="{{secarchOption.name}}">
+    <button type="submit">Search</button>
+</form>
+<br>
+<div>
+    {{#each authors}}
+    {{this.name}}
+    {{/each}}
+</div>

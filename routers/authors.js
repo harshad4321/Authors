@@ -1,10 +1,24 @@
 const express = require('express')
 const router = express.Router()
-
 const Author = require('../models/auth')
 
-router.get('/', (req, res) => {
-    res.render('authors/index')
+router.get('/', async (req, res) => {
+    let secarchOption = {}
+    if (req.query.name != null && req.query.name !== '') {
+        secarchOption.name = new RegExp(req.query.name, 'i')
+
+    }
+    try {
+        const authors = await Author.find(secarchOption)
+        console.log('>>>>>>>', authors);
+        res.render('authors/index',
+            {
+                authors: authors,
+                secarchOption: req.query
+            })
+    } catch {
+        res.redirect('/')
+    }
 
 })
 
@@ -21,9 +35,9 @@ router.post('/', async (req, res) => {
     })
     try {
         const newAuthor = await author.save()
-
         // res.redirect(`author/${newAuthor.id}`)
         res.redirect(`authors`)
+        console.log(newAuthor);
 
     } catch {
         res.render('authors/new', {
@@ -32,6 +46,7 @@ router.post('/', async (req, res) => {
 
         })
     }
+
 })
 
 
